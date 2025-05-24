@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Event Bubbling</title>
+  <style>
+    #grandparent, #parent, #child {
+      padding: 20px;
+      border: 2px solid;
+      margin: 10px;
+    }
+    #grandparent {
+      border-color: red;
+    }
+    #parent {
+      border-color: green;
+    }
+    #child {
+      border-color: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="grandparent">
+    Grandparent
+    <div id="parent">
+      Parent
+      <div id="child">
+        Child (Click me)
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("grandparent").addEventListener("click", function () {
+      console.log("Grandparent clicked");
+    });
+
+    document.getElementById("parent").addEventListener("click", function (e) {
+      console.log("Parent clicked");
+       e.stopPropagation();
+    });
+
+    document.getElementById("child").addEventListener("click", function () {
+      console.log("Child clicked");
+    });
+  </script>
+
+</body>
+</html>
